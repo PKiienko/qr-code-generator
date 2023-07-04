@@ -7,9 +7,39 @@ import './App.css';
 const App = () => {
   const [inputText, setInputText] = useState('');
   const [size, setSize] = useState(200);
+  const [color, setColor] = useState('black');
+  const [bgColor, setBgColor] = useState('white');
+
+  const colorOptions = [
+    'white',
+    'lightgray',
+    'lightblue',
+    'lightgreen',
+    'lightyellow',
+    'lightpink',
+    'black',
+    'darkgray',
+    'darkblue',
+    'darkgreen',
+  ];
+
+  const bgColorOptions = [
+    'black',
+    'darkgray',
+    'darkblue',
+    'darkgreen',
+    'darkorange',
+    'indigo',
+    'white',
+    'lightgray',
+    'lightblue',
+    'lightgreen',
+  ];
 
   const saveQR = () => {
-    const svgString = renderToString(<QRCode size={size} value={inputText} />);
+    const svgString = renderToString(
+      <QRCode size={size} value={inputText} fgColor={color} bgColor={bgColor} />
+    );
     const canvas = document.createElement('canvas');
     const img = new Image();
 
@@ -58,6 +88,26 @@ const App = () => {
           <option value={1000}>1000</option>
         </select>
       </div>
+      <div className='input-container'>
+        <label>Select color:</label>
+        <select onChange={(e) => setColor(e.target.value)}>
+          {colorOptions.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className='input-container'>
+        <label>Select background color:</label>
+        <select onChange={(e) => setBgColor(e.target.value)}>
+          {bgColorOptions.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+      </div>
       <div className='buttons'>
         <button onClick={saveQR}>Save</button>
         <button onClick={closeCode}>Clear</button>
@@ -68,6 +118,8 @@ const App = () => {
             size={256}
             style={{ height: 'auto', maxWidth: '100%', width: '100%' }}
             value={inputText}
+            fgColor={color}
+            bgColor={bgColor}
             viewBox={`0 0 256 256`}
           />
         </div>
