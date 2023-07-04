@@ -52,7 +52,7 @@ const App = () => {
       const pngFile = canvas.toDataURL('image/png');
       const downloadLink = document.createElement('a');
 
-      downloadLink.download = `QR ${inputText}`;
+      downloadLink.download = `QR ${inputText}.png`;
       downloadLink.href = pngFile;
       downloadLink.click();
     };
@@ -99,7 +99,7 @@ const App = () => {
         </select>
       </div>
       <div className='input-container'>
-        <label>Select background color:</label>
+        <label>Select background:</label>
         <select onChange={(e) => setBgColor(e.target.value)}>
           {bgColorOptions.map((option) => (
             <option key={option} value={option}>
