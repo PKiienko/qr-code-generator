@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import QRCode from 'react-qr-code';
 import { renderToString } from 'react-dom/server';
+import QRCode from 'react-qr-code';
 
 import './App.css';
 
